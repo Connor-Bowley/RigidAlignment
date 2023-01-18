@@ -93,11 +93,16 @@ int main(int argc, char* argv[])
     cerr<<"No matched landmark files and mesh. Please check that the suffix from SPHARM files match the inputs and that landmark files have the right extensions."<<endl;
     return 1;
   }
+  cout << "my output" << endl;
   std::map<std::string, std::string >::iterator itt = matchedNamesMap.begin(), itt_end = matchedNamesMap.end();
   cout <<endl<<"Matched files with landmarks:"<<endl;
   for (; itt != itt_end; itt ++)
     cout << itt->first << " " << itt->second << endl;
   cout << endl;
+
+  std::cout << "here" << std::endl;
+  std::cout << "sphere " << sphere << std::endl;
+  std::cout << "output " << output << std::endl;
 
   std::unique_ptr<RigidAlignment> RAlign(new RigidAlignment(landmarksMap, sphere.c_str(), output.c_str(), lmtype));
 

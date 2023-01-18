@@ -8,34 +8,41 @@ RigidAlignment::RigidAlignment(void)
 RigidAlignment::RigidAlignment(const char *landmarkDir, vector<char *> landmarkList, const char *sphere, const char *outdir, bool lmCoordType)
 {
   strcpy(m_spherename, sphere);
-  cout << "Loading Files..\n";
+  cout << "Loading Files.." << endl;
   if (!lmCoordType) setup(landmarkDir, landmarkList, sphere);
   else setup3f(landmarkDir, landmarkList, sphere);
   update();
 
-  cout << "Optimziation\n";
+  cout << "Optimziation" << endl;
   optimization();
 
   if (outdir != NULL)
   {
-    cout << "Saving Aligned Spheres..\n";
+    cout << "Saving Aligned Spheres.." << endl;
     saveSphere(outdir);
   }
 }
 
 RigidAlignment::RigidAlignment(std::map<std::string, std::vector<int> > landmarksMap, const char *sphere, const char *outdir, bool lmCoordType)
 {
+  std::cout << "this constructor" << std::endl;
+  std::cout << (sphere != nullptr) << std::endl;
+  std::cout << "sphere: " << sphere << std::endl;
   strcpy(m_spherename, sphere);
-  cout << "Loading Files..\n";
+  std::cout << m_spherename << std::endl;
+  cout << "Loading Files.." << endl;
+  std::cout << (outdir != nullptr) << std::endl;
+  std::cout << "outdir: " << outdir << std::endl;
+  std::cout << "landmarksMap size: " << landmarksMap.size() << std::endl; 
   setup(landmarksMap, sphere);
   update();
 
-  cout << "Optimziation\n";
+  cout << "Optimziation" << endl;
   optimization();
 
   if (outdir != NULL)
   {
-    cout << "Saving Aligned Spheres..\n";
+    cout << "Saving Aligned Spheres.." << endl;
     saveSphere(outdir);
   }
 }
@@ -96,8 +103,11 @@ void RigidAlignment::setup(const char *landmarkDir, vector<char *> landmarkList,
 
 void RigidAlignment::setup(std::map<std::string, std::vector<int> > landmarksMap, const char *sphere)
 {
+  std::cout << "this setup" << std::endl;
   m_sphere = new Mesh();
+  std::cout << "new didnt fail" << std::endl;
   m_sphere->openFile(sphere);
+  std::cout << "opened file" << std::endl;
 
   m_nSubj = landmarksMap.size();
 
